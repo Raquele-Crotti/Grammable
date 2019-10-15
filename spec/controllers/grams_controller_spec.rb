@@ -23,6 +23,12 @@ RSpec.describe GramsController, type: :controller do
       gram = Gram.last #load the last gram created in our database
       expect(gram.message).to eq("Hello!") #verifies the gram equals "Hello!"
     end
+
+    it "should properly deal with validation errors" do
+      post :create, params: { gram: { message: '' } } #trigger an HTTP request to our create action and leave empty string as the message in the form it submits
+      expect(response).to have_http_status(:unprocessable_entity) #expect reponse to have http status code of unprocessable entity
+      expect(Gram.count).to eq 0 #make sure gram doesn't make it into database
+    end
   end
 
 end
