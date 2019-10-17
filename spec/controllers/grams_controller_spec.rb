@@ -2,16 +2,42 @@ require 'rails_helper'
 
 RSpec.describe GramsController, type: :controller do
 
+  describe "grams#update action" do
+    it "should allow users to successfully update grams" do
+      gram = FactoryBot.create(:gram, message: "Initial Value") #create a grma in the database with the message of "Initial Value"
+      patch :update, params: { id: gram.id, gram: { message: 'Changed' } } #trigger an http patch request to the update action and use the form data to be 'Changed'
+      expect(response).to redirect_to root_path
+      gram.reload
+      expect(gram.message).to eq "Changed" #after reloading gram from database, we check to see if the value of it's message is equal to 'Changed'
+    end
+
+    it "should have http 404 error if the gram cannot be found" do
+      patch :update, params: { id: "YOLOSWAG", gram: {message: 'Changed' } } #if user submits an updated gram that cannot be found in our database
+      expect(response).to have_http_status(:not_found) #render 404 Not Found response
+    end
+
+    it "should render the edit form with an http status of unprocessable_entity" do
+      gram = FactoryBot.create(:gram, message: "Initial Value") #we need to have a gram in our database when action happens
+      patch :update, params: { id: gram.id, gram: { message: ''}} #perform http patch request but with empty string
+      expect(response).to have_http_status(:unprocessable_entity) #expect status 422 Unprocessable Entity
+      gram.reload
+      expect(gram.message).to eq "Initial Value" #reload gram from database with latest value and expect it to now be equal to "initial Value"
+    end
+  end
+
   describe "grams#edit action" do
     it "should successfully show the edit form if the gram is found" do
-
+      gram = FactoryBot.create(:gram)
+      get :edit, params: { id: gram.id }
+      expect(response).to have_http_status(:success)
     end
 
     it "should return a 404 error message if the gram is not found" do
-
+      get :edit, params: { id: 'TACOCAT' }
+      expect(response).to have_http_status(:not_found)
     end
   end
-  
+
   describe "grams#show action" do
     it "should successfully show the page if the gram is found" do
       gram = FactoryBot.create(:gram) #push a new gram to the database
