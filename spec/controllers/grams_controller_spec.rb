@@ -1,11 +1,22 @@
 require 'rails_helper'
 
 RSpec.describe GramsController, type: :controller do
+
+  describe "grams#edit action" do
+    it "should successfully show the edit form if the gram is found" do
+
+    end
+
+    it "should return a 404 error message if the gram is not found" do
+
+    end
+  end
+  
   describe "grams#show action" do
     it "should successfully show the page if the gram is found" do
       gram = FactoryBot.create(:gram) #push a new gram to the database
       get :show, params: { id: gram.id } #trigger an HTTP request to /grams/:id where id is replaced by the gram jiust created
-      expec(response).to have_http_status(:success) #expect successful HTTP status code
+      expect(response).to have_http_status(:success) #expect successful HTTP status code
     end
 
     it "should return a 404 error if the gram is not found" do
