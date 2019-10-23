@@ -9,6 +9,8 @@ FactoryBot.define do
 
   factory :gram do
     message { "hello" }
+    picture { fixture_file_upload(Rails.root.join('spec', 'fixtures', 'picture.png').to_s, 'img/png') } #sets default picture that FactoryBot uses to ber the file located at spec/fixtures/picture.png
+
     association :user
   end
 end
