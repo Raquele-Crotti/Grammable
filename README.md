@@ -15,8 +15,7 @@ An application very similar to Instagram where users are able to load and view p
 
 ## Technologies 
 Project is created with:
-
-*[ruby gem RSpec](https://github.com/rspec/rspec-rails)
+* [ruby gem RSpec](https://github.com/rspec/rspec-rails)
 * [ruby '2.5.3'](https://github.com/university-bootcamp/coding-environment/blob/master/README.md#coding-environment-installation-guide)
 * gem 'rails', '~> 5.2.3'
 * [Heroku](https://signup.heroku.com/t/platform?c=70130000001xDpdAAE&gclid=CjwKCAiAzuPuBRAIEiwAkkmOSM8vVAtL7RKLqoIVrshH7VuxMysxD2e1555A3dwyDU4sOSOxy6zujxoCXBIQAvD_BwE)
@@ -275,7 +274,7 @@ Our test fails again! This time, the test output is the following:
 ```
 This time, the error message indicates: Missing template grams/index. Again, we've seen similar error messages to this in the past as well. This happens generally when we haven't added a view to our action in our application yet.
 
-Add a view to the grams controller index action. Create app/views/grams/index.html.erb and add the following:
+Add a view to the grams controller index action. Create app/views/grams/index.html.erb and add something like the following:
 ```
 <h1>Grams!</h1>
 ```
@@ -308,7 +307,8 @@ Follow [FactoryBot gem documentation](https://github.com/thoughtbot/factory_Bot/
 
 
 ## Status
-Project is fully-functioning, user-friendly and complete. You can find it deployed on heroku via: [Flixter Application](https://flixter-raquele-crotti.herokuapp.com/)
+Project is thoroughly tested, user-friendly and complete. You can find it deployed on heroku via: [Grammable Application](https://grammable-raquele-crotti.herokuapp.com/
+)
 
 
 ## Sources
