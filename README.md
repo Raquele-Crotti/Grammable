@@ -10,11 +10,12 @@ This application is a deep dive into Test Driven Development. Utilizing Ruby gem
 * [Contact](#contact)
 
 ## General info
-An application very similar to Instagram where users are able to load and view posts listings featuring images, comments, user email, edit, destroy, new post form, user log-in/log-out and registration pages. This application focuses primarily on using Test Driven Development with Ruby gem RSpec. 
+An application very similar to Instagram where users are able to load and view post listings featuring images, comments, user email, edit, destroy, new post form, user log-in/log-out and registration pages. This application focuses primarily on using Test Driven Development with the Ruby gem RSpec. 
 
 
 ## Technologies 
 Project is created with:
+
 *[ruby gem RSpec](https://github.com/rspec/rspec-rails)
 * [ruby '2.5.3'](https://github.com/university-bootcamp/coding-environment/blob/master/README.md#coding-environment-installation-guide)
 * gem 'rails', '~> 5.2.3'
@@ -47,8 +48,9 @@ Open newly created grammable application in your text editor and go to database.
   password: password
   host: localhost
   ```
-    comment out last two lines on file for username and password.
-Change directory into your Flixter project
+comment out last two lines on file for username and password.
+
+Change directory into your Grammable project
   ```
   $ cd /vagrant/src/grammable
   ```
@@ -70,7 +72,7 @@ Set up web development pipeline:
 
     create project in heroku and then deploy it to heroku
 
-##Set Up the Testing Environment
+## Set Up the Testing Environment
 
 Follow [Ruby gem RSpec documentation](https://github.com/rspec/rspec-rails) and make the following adjustments:
 
@@ -100,7 +102,7 @@ Open Gemfile and add these lines to the bottom:
 
 **Create a Test**
 
-The root page will list our all posts. So let's generate a controller "grams" to put inside the index action:
+The root page will list all our posts. So let's generate a controller "grams" to put inside the index action:
 ```
 $ rails generate controller grams
 ```
@@ -120,7 +122,7 @@ Pending: (Failures listed here are expected and do not affect your suite's statu
 # Not yet implemented
 # ./spec/helpers/grams_helper_spec.rb:14
 ```
-Running our test finally told us something interesting! It tells us we have one pending test. That's because when we generated our grams controller, it gave us one placeholder test to give us a place to look. Edit spec/helpers/grams_helper_spec.rb and remove the line so it looks like this:
+It tells us we have one pending test. That's because when we generated our grams controller, it gave us one placeholder test to give us a place to look. Edit spec/helpers/grams_helper_spec.rb and remove the line so it looks like this:
 ```
 RSpec.describe GramsHelper, type: :helper do
 
@@ -133,6 +135,7 @@ $ bundle exec rspec
 The response returns to tell us we don't have any tests failing or passing. That is because we have not written any tests yet.
 
 **Write the First Test**
+
 We want to test that when someone visits our site and performs a GET HTTP request to a URL that looks like /, they should receive a successful HTTP response from our application.
 
 The next step of the process is to convert the above specification into code. Since the root page will be located in the grams_controller.rb, the specification of this will be in grams_controller_spec.rb.
@@ -147,7 +150,7 @@ RSpec.describe GramsController, type: :controller do
   end
 end
 ```
-If we read the code as plain English, it explains what it's doing. This is setting up a section (between the do and the end) that will "describe" how the grams#index action behaves. The describe command really sets up a grouping of tests
+If we read the code as plain English, it explains what it's doing. This is setting up a section (between the do and the end) that will "describe" how the grams#index action behaves. 
 
 Add the following to spec/controllers/grams_controller_spec.rb:
 ```
@@ -170,7 +173,7 @@ RSpec.describe GramsController, type: :controller do
   end
 end
 ```
-Next, let's verify that the page loads successfully. To do so, add this line.
+Next, let's verify that the page loads successfully. To do so, add line   expect(response).to have_http_status(:success) after get :index:
 ```
 RSpec.describe GramsController, type: :controller do
   describe "grams#index action" do
@@ -181,7 +184,7 @@ RSpec.describe GramsController, type: :controller do
   end
 end
 ```
-You can read the result like plain English. The line we added tells our tests that we expect the response to have an HTTP status code that's successful. That's very close to what our plain English specification was.
+The line we added tells our tests that we expect the response to have an HTTP status code that's successful. That's very close to what our plain English specification was.
 
 Let's save the file and run our test suite again.
 ```
@@ -238,7 +241,7 @@ That means when in our test we write the code get :index, we'll fire off an HTTP
 
 Let's run our tests again.
 ```
-$ bundle exec rpec
+$ bundle exec rspec
 ```
 Our test fails again. Now it gives us this failure message:
 ```
@@ -269,8 +272,8 @@ Our test fails again! This time, the test output is the following:
        Missing template grams/index, application/index with {:locale=>[:en], :formats=>[:html], :handlers=>[:erb, :builder, :raw, :ruby, :jbuilder, :coffee]}. Searched in:
          * "#"
      # ./spec/controllers/grams_controller_spec.rb:6:in `block (3 levels) in '
-     ```
-     This time, the error message indicates: Missing template grams/index. Again, we've seen similar error messages to this in the past as well. This happens generally when we haven't added a view to our action in our application yet.
+```
+This time, the error message indicates: Missing template grams/index. Again, we've seen similar error messages to this in the past as well. This happens generally when we haven't added a view to our action in our application yet.
 
 Add a view to the grams controller index action. Create app/views/grams/index.html.erb and add the following:
 ```
