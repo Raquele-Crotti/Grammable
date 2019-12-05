@@ -17,7 +17,7 @@ An application very similar to Instagram where users are able to load and view p
 Project is created with:
 * [ruby gem RSpec](https://github.com/rspec/rspec-rails)
 * [ruby '2.5.3'](https://github.com/university-bootcamp/coding-environment/blob/master/README.md#coding-environment-installation-guide)
-* gem 'rails', '~> 5.2.3'
+* [gem 'rails', '~> 5.2.3'](https://github.com/rails/rails)
 * [Heroku](https://signup.heroku.com/t/platform?c=70130000001xDpdAAE&gclid=CjwKCAiAzuPuBRAIEiwAkkmOSM8vVAtL7RKLqoIVrshH7VuxMysxD2e1555A3dwyDU4sOSOxy6zujxoCXBIQAvD_BwE)
 * [HTML5](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5)
 * [CSS](https://www.w3schools.com/html/html_css.asp)
